@@ -1,10 +1,10 @@
 # ChatARangAI v2
 
 ## What this is
-AI plank-fatigue coach with real-time **neuromod cueing**. Tracks hip angle from video (Continuity Camera or seed MP4), detects fatigue drift, and **tells a human operator** when to fire **NMES** bursts on **quads (UP)** or **lumbar (DOWN)**. No hardware control—**we output cues + logs** for analysis.
+AI plank-fatigue coach with real-time **TENS cueing**. Tracks hip angle from video (Continuity Camera or seed MP4), detects fatigue drift, and **tells a human operator** when to fire **TENS** bursts on **quads (UP)** or **lumbar (DOWN)**. No hardware control—**we output cues + logs** for analysis.
 
 ## Why
-Test the hypothesis: **interrupt NMES** (brief, targeted bursts triggered by posture error) **reduces fatigue slope** and **extends time-to-failure (TTF)** vs **control** and **static** stimulation.
+Test the hypothesis: **interrupt TENS** (brief, targeted bursts triggered by posture error) **reduces fatigue slope** and **extends time-to-failure (TTF)** vs **control** and **static** stimulation.
 
 ## What it does
 - Pose → hip angle → EMA + median → **drift = angle − baseline**
@@ -23,7 +23,7 @@ Test the hypothesis: **interrupt NMES** (brief, targeted bursts triggered by pos
 ## Controls
 c calibrate/start • e end (good job) • q quit • space confirm (latency)
 
-## E-stim mapping (operator only)
+## TENS mapping (operator only)
 - **Channel 1 = quads → UP (green)** → TTS: “channel one up”
 - **Channel 2 = lumbar → DOWN (red)** → TTS: “channel two down”
 - Fixed envelope for cues: **PW 200 µs**, **~1.5 s hold**, **period ≥ 3 s**; intensity fixed per subject (log mA externally)
