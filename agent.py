@@ -144,7 +144,7 @@ while True:
         if min(vis)>=0.1:
             first_pose=True; last_pose_t=tvid; pose_ok=True
             hip=hip_angle_deg(lms,W,h)
-            a=ema.u(hip); med.append(a); avg=float(np.median(list(med))); samples.append((tvid,avg))
+            ema_v=ema.u(hip); med.append(ema_v); avg=float(np.median(list(med))); samples.append((tvid,avg))
 
     slope=slope_last(samples,8.0,0.15) if len(samples)>=8 else 0.0
 
