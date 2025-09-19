@@ -1,0 +1,63 @@
+Live trial — operator checklist
+
+Pre-flight (once)
+	•	iPhone: unlocked, Wi-Fi/Bluetooth on, “Continuity Camera” enabled.
+	•	macOS: System Settings → Privacy & Security → Camera → allow ~/ChatARangAI_v2/.venv/bin/python.
+	•	Kill stuck camera daemons:
+
+sudo killall VDCAssistant AppleCameraAssistant 2>/dev/null || true
+
+
+
+Start
+
+cd ~/ChatARangAI_v2
+source .venv/bin/activate
+./.venv/bin/python run_trial.py
+
+Form inputs (type exactly)
+	•	subject [...] → press Enter (auto ID OK).
+	•	condition [...] → interrupt (or control / static).
+	•	operator initials → your initials.
+	•	intensity note → e.g., TENS 3/5.
+	•	notes → any short note.
+	•	source [...] → live.
+	•	It will print: cameras: 0:ok(1920x1080) 1:x (use the ok index).
+	•	camera [...] → iphone.
+	•	device index for iPhone [1]: → enter 0 (your machine: 0 is iPhone per probe).
+
+It will print the launch line and open the video.
+
+During trial (keys)
+	•	c = calibrate/start
+	•	space = confirm shock latency
+	•	e = end trial (saves + “good job”)
+	•	q = quit immediately
+
+After trial — check outputs
+
+ls -lt logs/session_*.csv | head
+ls -lt logs/plots/*_fatigue.png | head
+
+	•	Expect: logs/session_<SUBJ>_<COND>_<id>.csv
+	•	Plot auto-saved: logs/plots/session_*_fatigue.png
+	•	Form log appended: logs/reports/trial_forms.csv
+	•	Meta JSON: logs/session_*_meta.json
+
+If the form feels “wonky” or camera choice is wrong
+	•	Direct run on iPhone index (use the ok index from the form’s “cameras” line; on your box it’s 0):
+
+SUBJECT=S01 CONDITION=interrupt ./.venv/bin/python agent.py --device 0 --subject S01 --condition interrupt
+
+
+
+If camera won’t open
+	•	Close Zoom/Meet/Photo Booth.
+	•	Re-run:
+
+sudo killall VDCAssistant AppleCameraAssistant 2>/dev/null || true
+./.venv/bin/python run_trial.py
+
+
+
+That’s it. Collect data.
