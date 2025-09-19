@@ -23,3 +23,11 @@ for c,sub in df.groupby("condition"):
 plt.xlabel("TTF (s)"); plt.ylabel("count"); plt.legend(); plt.tight_layout()
 plt.savefig("logs/plots/aggregate_ttf_hist.png",dpi=120); plt.close()
 print("OK")
+
+# AUTO_OPEN_AGG
+import os,glob,subprocess
+try:
+  ps=sorted(glob.glob('logs/plots/aggregate_*png'))
+  [subprocess.run(['open',q],check=False) for q in ps[-2:]]
+except Exception:
+  pass
